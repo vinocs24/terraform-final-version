@@ -26,7 +26,7 @@ resource "aws_elb" "terra-elb" {
   connection_draining         = true
   connection_draining_timeout = 300
 
-  tags {
+  tags = {
     Name = "terraform-elb"
   }
 }
