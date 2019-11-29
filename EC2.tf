@@ -53,7 +53,7 @@ resource "aws_instance" "webservers" {
 	instance_type = var.instance_type
 	security_groups = [aws_security_group.webservers.id]
 	subnet_id = element(aws_subnet.public.*.id,count.index)
-	user_data = file("install_httpd.sh")
+	user_data = file("installing-components.sh")
 
 	tags = {
 	  Name = "Server-count.index"
