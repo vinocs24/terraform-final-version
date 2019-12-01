@@ -1,6 +1,14 @@
-#! /bin/bash
-sudo yum update
-sudo yum install -y httpd
-sudo chkconfig httpd on
-sudo service httpd start
-echo "<h1>Deployed via Terraform wih ELB</h1>" | sudo tee /var/www/html/index.html
+#!/bin/bash
+yum update -y
+yum install httpd
+yum install php php-mysql -y
+yum install mysql-server -y
+service httpd start
+service mysqld start
+mysqladmin -uroot create mydb
+cd /var/www/html
+wget  http://wordpress.org/latest.tar.gz
+tar -xzf latest.tar.gz
+mv wordpress/ testwordpress
+cd testwordpress
+mv wp-config-sample.php wp-config.php
